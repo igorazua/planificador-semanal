@@ -96,6 +96,14 @@ export const DayView: React.FC<DayViewProps> = ({
     onUpdateActivities(selectedDay, resolved);
   };
 
+  // Update description
+  const handleUpdateDescription = (instanceId: string, description: string) => {
+    const updated = activities.map((act) =>
+      act.instanceId === instanceId ? { ...act, description } : act
+    );
+    onUpdateActivities(selectedDay, updated);
+  };
+
   // Start drag from long press
   const handleStartDrag = (instanceId: string, clientY: number, grabOffsetY: number) => {
     const act = activities.find((a) => a.instanceId === instanceId);
@@ -409,6 +417,7 @@ export const DayView: React.FC<DayViewProps> = ({
               onToggleCompleted={handleToggleCompleted}
               onDelete={handleDelete}
               onDuplicate={handleDuplicate}
+              onUpdateDescription={handleUpdateDescription}
               onStartDrag={handleStartDrag}
               isDragging={draggingId === act.instanceId}
               draggedTopPx={draggingId === act.instanceId ? dragCurrentTopPx : null}

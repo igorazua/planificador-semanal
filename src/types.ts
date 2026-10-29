@@ -21,6 +21,7 @@ export interface ScheduledActivity {
   instanceId: string;
   activityId?: string;
   title: string;
+  description?: string;
   startMinute: number; // Minutes from 00:00 (e.g. 420 = 07:00)
   duration: number; // Minutes (multiple of 15, min 15)
   colorId: string;

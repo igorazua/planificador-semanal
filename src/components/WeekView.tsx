@@ -170,7 +170,7 @@ export const WeekView: React.FC<WeekViewProps> = ({
                               color: color.textSolid,
                             }}
                             className="absolute top-1 bottom-1 rounded-lg shadow-xs flex items-center px-1.5 overflow-hidden transition-transform hover:scale-[1.02] hover:z-20 border border-black/10"
-                            title={`${act.title} (${minutesToTimeString(act.startMinute)} - ${minutesToTimeString(
+                            title={`${act.title}${act.description ? ` - "${act.description}"` : ''} (${minutesToTimeString(act.startMinute)} - ${minutesToTimeString(
                               act.startMinute + act.duration
                             )} • ${formatDuration(act.duration)})`}
                           >

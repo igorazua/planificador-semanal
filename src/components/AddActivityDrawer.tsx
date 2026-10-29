@@ -35,6 +35,7 @@ export const AddActivityDrawer: React.FC<AddActivityDrawerProps> = ({
 }) => {
   const [activeTab, setActiveTab] = useState<'catalog' | 'custom'>('catalog');
   const [customTitle, setCustomTitle] = useState('');
+  const [customDescription, setCustomDescription] = useState('');
   const [customDuration, setCustomDuration] = useState(45);
   const [customColorId, setCustomColorId] = useState('orange');
   const [selectedStartMinute, setSelectedStartMinute] = useState<number>(() => {
@@ -74,12 +75,14 @@ export const AddActivityDrawer: React.FC<AddActivityDrawerProps> = ({
     const newActivity: ScheduledActivity = {
       instanceId: generateId(),
       title: customTitle.trim(),
+      description: customDescription.trim() || undefined,
       startMinute: selectedStartMinute,
       duration: customDuration,
       colorId: customColorId,
     };
     onAddScheduledActivity(dayKey, newActivity);
     setCustomTitle('');
+    setCustomDescription('');
     onClose();
   };
 
@@ -218,6 +221,19 @@ export const AddActivityDrawer: React.FC<AddActivityDrawerProps> = ({
                   onChange={(e) => setCustomTitle(e.target.value)}
                   autoFocus
                   className="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-sm bg-white"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-slate-600 mb-1.5">
+                  Descripción o notas <span className="text-slate-400 font-normal">(opcional)</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="ej. Rutina de pierna, llevar documentos..."
+                  value={customDescription}
+                  onChange={(e) => setCustomDescription(e.target.value)}
+                  className="w-full px-3.5 py-2 rounded-xl border border-slate-300 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 text-xs bg-white"
                 />
               </div>
 
